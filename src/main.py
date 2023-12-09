@@ -1,21 +1,16 @@
-import argparse
-from criar_grafo import carregar_problema_tsp, carregar_solucao_optima, calcular_peso_solucao_optima
-from metricas import executarAlgoritmo, salvar_em_csv
-from twice_around_the_tree import twiceAroundTheTreeTSP
+import sys
+import tsplib95
+from twice_around_tree import twice_around_tree
 
-parser = argparse.ArgumentParser(description='Executar algoritmos TSP em um dataset específico.')
-parser.add_argument('dataset', help='Nome do dataset (sem a extensão do arquivo)')
-args = parser.parse_args()
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Uso: python script.py <nome_do_dataset>")
+        sys.exit(1)
 
-nome_dataset = args.dataset
-nome_arquivo_csv = 'resultados_tsp.csv'
+    nome_dataset = sys.argv[1]
+    nome_arquivo_csv = 'resultados_tsp.csv'
+    grafo = tsplib95.load(f'testes/{nome_dataset}.tsp').get_graph()
+    num = len(grafo.nodes)
 
-grafo = carregar_problema_tsp(f'testes/{nome_dataset}.tsp')
-tour_otima = carregar_solucao_optima(f'testes/{nome_dataset}.opt.tour')
-peso_otimo = calcular_peso_solucao_optima(grafo, tour_otima)
-
-num_cidades = len(grafo.nodes)
-
-for algoritmo in [twiceAroundTheTreeTSP]:
-    resultado = executarAlgoritmo(algoritmo, grafo, peso_otimo)
-    salvar_em_csv(resultado, nome_arquivo_csv, nome_dataset, num_cidades)
+    resultado = twice_around_tree(grafo)
+    print(resultado)
