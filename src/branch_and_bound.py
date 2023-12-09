@@ -51,7 +51,7 @@ def reduce_matrix(reduced_matrix):
                     reduced_matrix[j][i] -= col_min
     return cost
 
-def TSP(adj_matrix):
+def branch_and_bound(adj_matrix):
     pq = []
     root = Node([-1] * (N + 1), adj_matrix, 0, 0, 0)
     root.cost = reduce_matrix(root.reduced_matrix)
@@ -88,5 +88,5 @@ adj_matrix = [[0, 10, 15, 20],
               [20, 25, 30, 0]]
 final_path = [None] * (N + 1)
 
-print("Minimum cost:", TSP(adj_matrix))
+print("Minimum cost:", branch_and_bound(adj_matrix))
 print("Path taken:", final_path)
