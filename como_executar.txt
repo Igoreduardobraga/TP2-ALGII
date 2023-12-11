@@ -1,0 +1,11 @@
+Para executar o código rode o seguinte comando: python src/main.py "nome do algoritmo" (windows) ou python3 src/main.py "nome do algoritmo" (linux)
+
+Em nome do algoritmo altere para o nome do algoritmo correspondente:
+
+Branch and Bound: branch 
+Twice Around the Tree: twice
+Christofides: christofides
+
+O codigo irá criar um pdf com o nome do algoritmo mostrando os resultados. Esse pdf se encontrará na pasta resultados.
+
+Os csv's com o nome "completo" contêm todos os testes que rodaram satisfatoriamente nesse trabalho
