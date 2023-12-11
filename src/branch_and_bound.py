@@ -31,4 +31,4 @@ def branch_and_bound(graph):
                     stack.append(({'node': neighbour, 'visited': new_visited, 'path': new_path, 'bound': new_bound}, new_bound))
         stack.sort(key=lambda x: x[1])
 
-    return best_cost, best_path
+    return best_cost
